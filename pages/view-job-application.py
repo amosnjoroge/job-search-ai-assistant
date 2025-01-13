@@ -381,110 +381,110 @@ with st.container(key="application-content", border=True):
                 else:
                     handle_error("Could not find generated documents in the database")
 
-            def parse_resume_sections(resume_text):
-                """Parse resume text into sections based on newline patterns."""
-                # Split into main sections (detected by double newlines)
-                sections = resume_text.strip().split("\n\n")
-                parsed_sections = {}
+                def parse_resume_sections(resume_text):
+                    """Parse resume text into sections based on newline patterns."""
+                    # Split into main sections (detected by double newlines)
+                    sections = resume_text.strip().split("\n\n")
+                    parsed_sections = {}
 
-                current_section = None
-                current_content = []
+                    current_section = None
+                    current_content = []
 
-                for section in sections:
-                    # Check if this is a section header (no bullet points, shorter than 50 chars)
-                    lines = section.strip().split("\n")
-                    if len(lines[0]) < 70 and not lines[0].startswith("●"):
-                        if current_section:
-                            parsed_sections[current_section] = "\n".join(
-                                current_content
-                            )
-                        current_section = lines[0]
-                        current_content = lines[1:] if len(lines) > 1 else []
-                    else:
-                        current_content.extend(lines)
+                    for section in sections:
+                        # Check if this is a section header (no bullet points, shorter than 50 chars)
+                        lines = section.strip().split("\n")
+                        if len(lines[0]) < 70 and not lines[0].startswith("●"):
+                            if current_section:
+                                parsed_sections[current_section] = "\n".join(
+                                    current_content
+                                )
+                            current_section = lines[0]
+                            current_content = lines[1:] if len(lines) > 1 else []
+                        else:
+                            current_content.extend(lines)
 
-                # Add the last section
-                if current_section:
-                    parsed_sections[current_section] = "\n".join(current_content)
+                    # Add the last section
+                    if current_section:
+                        parsed_sections[current_section] = "\n".join(current_content)
 
-                return parsed_sections
+                    return parsed_sections
 
-            def format_contact_info(contact_text):
-                """Format contact information into markdown."""
-                lines = contact_text.split("\n")
-                contacts = [f"📞 {lines[0]}", f"📍 {lines[1]}", f"📧 {lines[2]}"]
-                return " | ".join(contacts)
+                def format_contact_info(contact_text):
+                    """Format contact information into markdown."""
+                    lines = contact_text.split("\n")
+                    contacts = [f"📞 {lines[0]}", f"📍 {lines[1]}", f"📧 {lines[2]}"]
+                    return " | ".join(contacts)
 
-            def format_section_content(content):
-                """Format section content into markdown, handling bullet points."""
-                if not content:
-                    return ""
+                def format_section_content(content):
+                    """Format section content into markdown, handling bullet points."""
+                    if not content:
+                        return ""
 
-                # Split content into lines and process each line
-                lines = content.split("\n")
-                formatted_lines = []
+                    # Split content into lines and process each line
+                    lines = content.split("\n")
+                    formatted_lines = []
 
-                for line in lines:
-                    # Convert bullet points
-                    if line.startswith("●"):
-                        formatted_lines.append(f"* {line[1:].strip()}")
-                    else:
-                        formatted_lines.append(line.strip())
+                    for line in lines:
+                        # Convert bullet points
+                        if line.startswith("●"):
+                            formatted_lines.append(f"* {line[1:].strip()}")
+                        else:
+                            formatted_lines.append(line.strip())
 
-                return "\n".join(formatted_lines)
+                    return "\n".join(formatted_lines)
 
-            def create_resume_markdown(sections):
-                """Create complete markdown formatted resume."""
-                markdown_sections = []
+                def create_resume_markdown(sections):
+                    """Create complete markdown formatted resume."""
+                    markdown_sections = []
 
-                # Process each section
-                for section_title, content in sections.items():
-                    markdown_sections.append(f"#### {section_title}")
-                    if section_title == list(sections.keys())[0]:
-                        markdown_sections.append(format_contact_info(content))
-                    else:
-                        formatted_content = format_section_content(content)
-                        markdown_sections.append(formatted_content)
-                    markdown_sections.append("")  # Add spacing between sections
+                    # Process each section
+                    for section_title, content in sections.items():
+                        markdown_sections.append(f"#### {section_title}")
+                        if section_title == list(sections.keys())[0]:
+                            markdown_sections.append(format_contact_info(content))
+                        else:
+                            formatted_content = format_section_content(content)
+                            markdown_sections.append(formatted_content)
+                        markdown_sections.append("")  # Add spacing between sections
 
-                return "\n".join(markdown_sections)
+                    return "\n".join(markdown_sections)
 
-            def display_cover_letter(cover_letter_text):
-                # Parse the cover letter sections
-                sections = cover_letter_text.split("\n\n")
+                def display_cover_letter(cover_letter_text):
+                    # Parse the cover letter sections
+                    sections = cover_letter_text.split("\n\n")
 
-                # Display header with date and address
-                st.markdown(f"**Date:** {sections[0]}")
-                st.markdown(f"**To:** {sections[1]}")
+                    # Display header with date and address
+                    st.markdown(f"**Date:** {sections[0]}")
+                    st.markdown(f"**To:** {sections[1]}")
 
-                # Display salutation and main content
-                for section in sections[2:]:
-                    if section.startswith("Dear"):
-                        st.markdown(f"**{section}**")
-                    else:
-                        st.write(section)
+                    # Display salutation and main content
+                    for section in sections[2:]:
+                        if section.startswith("Dear"):
+                            st.markdown(f"**{section}**")
+                        else:
+                            st.write(section)
 
-            tab1, tab2 = st.tabs(["Resume", "Cover Letter"])
+                tab1, tab2 = st.tabs(["Resume", "Cover Letter"])
 
-            with tab1:
-                resume_sections = parse_resume_sections(documents["updated_resume"])
-                resume_markdown = create_resume_markdown(resume_sections)
-                st.markdown(resume_markdown)
-                st.download_button(
-                    label="Download Resume",
-                    data=documents["updated_resume"],
-                    file_name="document.pdf",
-                    mime="application/pdf",
-                )
+                with tab1:
+                    resume_sections = parse_resume_sections(documents["updated_resume"])
+                    resume_markdown = create_resume_markdown(resume_sections)
+                    st.markdown(resume_markdown)
+                    st.download_button(
+                        label="Download Resume",
+                        data=documents["updated_resume"],
+                        file_name="document.pdf",
+                        mime="application/pdf",
+                    )
 
-            with tab2:
-                display_cover_letter(documents["cover_letter"])
-                st.download_button(
-                    label="Download Cover Letter",
-                    data=documents["cover_letter"],
-                    file_name="cover_letter.txt",
-                    mime="text/plain",
-                )
+                with tab2:
+                    display_cover_letter(documents["cover_letter"])
+                    st.download_button(
+                        label="Download Cover Letter",
+                        data=documents["cover_letter"],
+                        file_name="cover_letter.txt",
+                        mime="text/plain",
+                    )
 
         else:
             st.warning("Please complete the analysis to generate documents.")

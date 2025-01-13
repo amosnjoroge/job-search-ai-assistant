@@ -2,6 +2,7 @@
 from __future__ import annotations
 import json
 import os
+from dotenv import load_dotenv
 from abc import ABC, abstractmethod
 from typing import Dict, List, Optional, Any
 
@@ -61,6 +62,7 @@ class LLMFactory:
             **kwargs: Additional arguments (api_key, temperature, max_tokens, etc.)
         """
         # Create config dict with provided arguments
+        load_dotenv()
         model = model_name or os.getenv(f"{provider.name}_DEFAULT_MODEL")
         config_dict = {"provider": provider.value, "model_name": model, **kwargs}
 
