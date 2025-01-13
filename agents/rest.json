@@ -1,0 +1,75 @@
+{
+  "timestamp": "2025-01-05T17: 28: 31.496473",
+  "agent": {
+    "type": "MatcherAgent",
+    "llm": { "type": "Anthropic", "model_name": "claude-3-5-sonnet-latest" }
+  },
+  "action": "matching",
+  "data": {
+    "analysis": {
+      "match_analysis": {
+        "overall_score": 0.65,
+        "skill_alignment": {
+          "score": 0.45,
+          "matching_skills": ["playwright", "git", "agile-methodologies"],
+          "missing_skills": [
+            "c#",
+            "nuxt",
+            "flutter",
+            "xunit",
+            "dot-net-core",
+            "azure-devops",
+            "kubernetes",
+            "jira"
+          ],
+          "partial_matches": [
+            {
+              "required": "agile-testing",
+              "similar_found": "agile-methodologies",
+              "similarity": 0.8
+            }
+          ]
+        },
+        "experience_alignment": {
+          "score": 0.9,
+          "years_required": 5,
+          "years_actual": 10.5,
+          "level_match": true
+        },
+        "education_alignment": {
+          "score": 1.0,
+          "matches_requirement": true,
+          "details": "Bachelor's degree in Computer Engineering meets science degree requirement"
+        }
+      },
+      "recommendations": [
+        {
+          "category": "Skills Gap",
+          "priority": 1.0,
+          "action": "Acquire experience with .NET technologies (C#, .NET Core, xUnit)",
+          "expected_impact": "Significant improvement in technical stack alignment"
+        },
+        {
+          "category": "Tools",
+          "priority": 2.0,
+          "action": "Gain hands-on experience with Azure DevOps and Kubernetes",
+          "expected_impact": "Better alignment with infrastructure requirements"
+        },
+        {
+          "category": "Framework Knowledge",
+          "priority": 3.0,
+          "action": "Learn Nuxt and Flutter frameworks",
+          "expected_impact": "Enhanced capability with required development frameworks"
+        }
+      ],
+      "interview_focus_areas": [
+        "Experience with cloud infrastructure and CI/CD practices",
+        "Understanding of .NET ecosystem",
+        "Mobile testing experience (given Flutter requirement)",
+        "Agile testing practices and methodologies",
+        "Experience with microservices architecture testing"
+      ],
+      "confidence_score": 0.85
+    }
+  }
+}

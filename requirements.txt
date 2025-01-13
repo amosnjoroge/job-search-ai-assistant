@@ -1,0 +1,9 @@
+streamlit
+pydantic
+aiohttp
+bs4
+PyPDF2
+python-dotenv
+anthropic
+sqlalchemy
+aiosqlite

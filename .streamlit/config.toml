@@ -1,0 +1,12 @@
+[client]
+toolbarMode = "viewer"
+showErrorDetails = "full"
+showSidebarNavigation = false
+
+[browser]
+gatherUsageStats = false
+
+[theme]
+base = "dark"
+primaryColor = "#87CEEB"
+font = "monospace"
