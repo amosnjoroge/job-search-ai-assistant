@@ -1,5 +1,5 @@
 # Use python slim image as base
-FROM python:3.9-slim
+FROM python:3.12-slim
 
 # Define build-time arguments with default value
 ARG PORT=8501
