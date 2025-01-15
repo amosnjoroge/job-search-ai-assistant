@@ -19,8 +19,11 @@ docker run -d \
     -e PORT=11434 \
     --restart unless-stopped \
     -v $(pwd)/ajsa_database.sqlite3:/app/ajsa_database.sqlite3 \
+    -v $(pwd)/.env:/app/.env \
     streamlit-app
 ```
+
+**⚠️ Warning:** Ensure that the `ajsa_database.sqlite3` and `.env` files exist in the current directory before running the container.
 
 ## Step 3: Verify the Container is Running
 
