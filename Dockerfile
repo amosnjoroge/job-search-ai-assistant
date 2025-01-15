@@ -40,4 +40,4 @@ EXPOSE ${PORT}
 HEALTHCHECK CMD curl --fail http://localhost:${PORT}/_stcore/health || exit 1
 
 # Command to run the app using the environment variable
-CMD streamlit run main.py --server.port=${PORT}
+CMD ["sh", "-c", "streamlit run main.py --server.port=${PORT}"]
