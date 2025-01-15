@@ -86,10 +86,7 @@ def process_application(resume, posting_text, posting_url):
 @st.dialog("Delete Confirmation!", width="medium")
 def delete_application(application_id):
     with st.container(border=True):
-        st.write(
-            f":red[Are you sure you want to proceed with deleting application: {
-                 application_id}?]"
-        )
+        st.write(f":red[Are you sure you want to proceed with deleting application: {application_id}?]")
 
         no_col, mid_col, yes_col = st.columns([1, 2, 1])
         with no_col:
