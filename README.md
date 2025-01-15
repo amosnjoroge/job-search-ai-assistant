@@ -16,6 +16,7 @@ After building the image, you can create and run a container using the following
 docker run -d \
     --name ajsa-app \
     -p 11434:11434 \
+    -e PORT=11434 \
     --restart unless-stopped \
     -v $(pwd)/ajsa_database.sqlite3:/app/ajsa_database.sqlite3 \
     streamlit-app
