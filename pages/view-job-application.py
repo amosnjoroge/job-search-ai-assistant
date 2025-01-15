@@ -211,8 +211,14 @@ with st.container(key="application-content", border=True):
                 st.session_state["error_occurred"] = False
 
     # Initialize agents
-    llm = LLMFactory.create_llm(Provider.ANTHROPIC)
-    # llm = LLMFactory.create_llm(Provider.OLLAMA)
+    selected_llm = st.session_state.get("llm_in_use", "OLLAMA llama3.1:latest")
+    provider, model = selected_llm.split(" ", 1)
+    
+    llm = LLMFactory.create_llm(
+       provider=Provider(provider.lower()),
+        model_name=model
+    )
+
     inputter = InputAgent(llm)
     parser = ParserAgent(llm)
     matcher = MatcherAgent(llm)
@@ -368,6 +374,7 @@ with st.container(key="application-content", border=True):
                                     match_results,
                                 )
                             )
+                            st.rerun()
 
                         except Exception as e:
                             st.error(f"Error generating documents: {str(e)}")
