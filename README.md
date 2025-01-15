@@ -37,5 +37,5 @@ docker ps
 docker logs ajsa-app
 
 # Check the volume mount
-docker inspect ajsa-app | grep -A 10 Mounts
+docker inspect ajsa-app | grep -A 20 Mounts
 ```
