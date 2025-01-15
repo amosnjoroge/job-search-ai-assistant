@@ -1,6 +1,7 @@
 # Building a Docker Image and Creating a Container
 
 ## Step 1: Build the Docker Image
+
 To build the Docker image, run the following command in your terminal:
 
 ```bash
@@ -8,6 +9,7 @@ docker build -t streamlit-app .
 ```
 
 ## Step 2: Create and Run a Container
+
 After building the image, you can create and run a container using the following command:
 
 ```bash
@@ -20,6 +22,7 @@ docker run -d \
 ```
 
 ## Step 3: Verify the Container is Running
+
 If you want to verify everything is working:
 
 ```bash
