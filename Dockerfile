@@ -30,7 +30,8 @@ COPY .gitignore .dockerignore
 COPY . .
 
 # Create and switch to non-root user for security
-RUN useradd -m ajsAssistant
+RUN useradd -m ajsAssistant && \
+    chown -R ajsAssistant:ajsAssistant /app
 USER ajsAssistant
 
 # Expose the port using the ARG
