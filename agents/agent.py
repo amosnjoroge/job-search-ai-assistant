@@ -870,7 +870,7 @@ class DocumentGeneratorAgent(BaseAgent):
                 10. Mirror language and keywords from job posting
                 11. Address any specific instructions from job posting
                 12. Include proper business letter formatting with date and contact details
-                7. Very Important: Respond with the tone and style of the resume
+                13. Very Important: Respond with the tone and style of the resume
                 
                 Response format must be JSON with:
                 {
@@ -895,7 +895,7 @@ class DocumentGeneratorAgent(BaseAgent):
                 Original Job Posting: {job_posting}
                 
                 Format as a proper business letter with:
-                - Current date
+                - Current date {pd.Timestamp.now().strftime('%Y-%m-%d %H:%M:%S')}
                 - Recipient's contact information (if available in job posting)
                 - Professional greeting
                 - 3-4 focused paragraphs

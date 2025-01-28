@@ -42,6 +42,7 @@ pip-delete-this-directory.txt
 # SQLite
 *.db
 *.sqlite3
+*.sqlite3-*
 
 # Misc
 .DS_Store
