@@ -103,12 +103,13 @@ After building the image, create and run a container:
 
 ```bash
 docker run -d \
-    --name ajsa-app \
-    --restart unless-stopped \
-    -p 8501:8501 \
-    -v $(pwd)/ajsa_database.sqlite3:/app/ajsa_database.sqlite3 \
-    -v $(pwd)/.env:/app/.env \
-    streamlit-app
+  --name ajsa-app \
+  --restart unless-stopped \
+  -p 8501:8501 \
+  -v $(pwd)/ajsa_database.sqlite3:/app/ajsa_database.sqlite3:rw \
+  -v $(pwd)/.env:/app/.env \
+  --user $(id -u):$(id -g) \
+  streamlit-app
 ```
 
 **⚠️ Warning:** Ensure that the `ajsa_database.sqlite3` and `.env` files exist in the current directory before running the container.
